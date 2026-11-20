@@ -1,6 +1,6 @@
 import Router from '@koa/router';
 import { posts, takeNextId } from '../store.js';
-import { findPostError } from '../validation.js';
+import { POST_ID_MESSAGE, findPostError } from '../validation.js';
 
 const POSITIVE_INTEGER = /^[1-9]\d*$/;
 
@@ -44,7 +44,7 @@ router.get('/', (ctx) => {
   }
   const wantedPostId = parsePositiveInteger(postId);
   if (wantedPostId === null) {
-    ctx.throw(400, 'postId doit être un entier supérieur ou égal à 1');
+    ctx.throw(400, POST_ID_MESSAGE);
   }
   ctx.body = posts.filter((post) => post.postId === wantedPostId);
 });

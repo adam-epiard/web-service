@@ -1,5 +1,7 @@
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+export const POST_ID_MESSAGE = 'postId doit être un entier supérieur ou égal à 1';
+
 function isTextOfLength(value, min, max) {
   return typeof value === 'string' && value.length >= min && value.length <= max;
 }
@@ -7,7 +9,7 @@ function isTextOfLength(value, min, max) {
 const FIELD_RULES = {
   postId: {
     isValid: (value) => Number.isInteger(value) && value >= 1,
-    message: 'postId doit être un entier supérieur ou égal à 1',
+    message: POST_ID_MESSAGE,
   },
   name: {
     isValid: (value) => isTextOfLength(value, 1, 100),
