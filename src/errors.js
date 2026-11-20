@@ -8,7 +8,7 @@ export function rejectInvalidBody(error, ctx) {
   if (error.status === 413) {
     ctx.throw(413, 'Corps de la requête trop volumineux');
   }
-  ctx.throw(400, 'Corps de la requête : JSON invalide');
+  ctx.throw(400, 'Corps de la requête invalide : un objet JSON est attendu');
 }
 
 export async function handleErrors(ctx, next) {
