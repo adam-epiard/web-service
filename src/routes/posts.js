@@ -62,6 +62,20 @@ router.post('/', (ctx) => {
   ctx.body = post;
 });
 
+router.put('/:id', (ctx) => {
+  const index = findPostIndex(ctx);
+  const fields = readValidBody(ctx);
+  posts[index] = buildPost(posts[index].id, fields);
+  ctx.body = posts[index];
+});
+
+router.patch('/:id', (ctx) => {
+  const post = findPost(ctx);
+  const fields = readValidBody(ctx, { partial: true });
+  Object.assign(post, fields);
+  ctx.body = post;
+});
+
 router.delete('/:id', (ctx) => {
   posts.splice(findPostIndex(ctx), 1);
   ctx.status = 204;
