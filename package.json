@@ -1,0 +1,31 @@
+{
+  "name": "web-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "koa": "^3.3.0",
+    "@koa/router": "^15.7.1",
+    "koa-bodyparser": "^4.4.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adam-epiard/web-service.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/adam-epiard/web-service/issues"
+  },
+  "homepage": "https://github.com/adam-epiard/web-service#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
