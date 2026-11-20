@@ -8,13 +8,17 @@ function parsePositiveInteger(value) {
   return typeof value === 'string' && POSITIVE_INTEGER.test(value) ? Number(value) : null;
 }
 
-function findPost(ctx) {
+function findPostIndex(ctx) {
   const id = parsePositiveInteger(ctx.params.id);
-  const post = posts.find((candidate) => candidate.id === id);
-  if (!post) {
+  const index = posts.findIndex((candidate) => candidate.id === id);
+  if (index === -1) {
     ctx.throw(404, 'Post introuvable');
   }
-  return post;
+  return index;
+}
+
+function findPost(ctx) {
+  return posts[findPostIndex(ctx)];
 }
 
 function readValidBody(ctx, options) {
@@ -56,6 +60,11 @@ router.post('/', (ctx) => {
   ctx.status = 201;
   ctx.set('Location', `/posts/${post.id}`);
   ctx.body = post;
+});
+
+router.delete('/:id', (ctx) => {
+  posts.splice(findPostIndex(ctx), 1);
+  ctx.status = 204;
 });
 
 export default router;
